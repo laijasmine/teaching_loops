@@ -1,0 +1,158 @@
+---
+title: "Tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(flair)
+library(magrittr)
+knitr::opts_chunk$set(include = TRUE)
+```
+
+## Lists
+
+Lists are a another type of data structure. It can store other objects like `characters`, `logical`, `numeric`.
+
+Each of the items in the list has a spot in the list. This is called an "index". An index is a number from 1 to the length of the list. 
+
+Note - Different programming languages count this differently. For R it starts counting at 1.
+
+For a list called `ocean`. the character `whale` has an index of 2.
+
+```{r list}
+ocean <- c("otter", "whale", "jellyfish")
+#index        1          2         3
+```
+
+If you want an item in the list you can ask R for it using the index.
+
+```{r index, echo=FALSE}
+decorate('
+ocean[2]
+') %>%
+  flair("2")
+```
+
+### other useful ways of interacting with lists
+#### `length()`
+Get the `length` of the list
+```{r}
+length(ocean)
+```
+
+#### **Splicing lists** `:`
+
+You can get part of a list by specifying the indexes you want.
+```{r}
+ocean[2:3]
+```
+
+Once trick to avoid hard coding values is to use `length` to get the last index in the list.
+```{r, echo=FALSE}
+decorate('
+ocean[2:length(ocean)]
+') %>%
+  flair("length(ocean)")
+```
+
+#### `which()`
+figuring out the index if you know the character
+```{r}
+which(ocean == "otter")
+```
+
+### Exercise 
+There is some list called `flavours`. Please answer the following questions about this list:
+
+1. How many items are in `flavours`
+2. What is the index of `yuzu`
+3. What is in the index 4?
+```{r, include=FALSE}
+flavours <- c("matcha", "sesame", "yuzu", "chocolate", "cherry")
+```
+
+```{r flavours, exercise=TRUE, exercise.eval=FALSE}
+flavours
+```
+
+```{r flavours-hint}
+#1
+length(flavours)
+#2
+which(flavours == "yuzu")
+#3
+flavours[4]
+```
+
+## `for` Loops
+
+```{r structure, echo=T, eval=F}
+for (variable in vector) {
+  #do something here
+}
+```
+
+What actually happens behind the scenes:
+```{r loop-ex, echo=FALSE, collapse=TRUE}
+decorate('c("otter", "whale", "jellyfish")') %>% 
+  flair(ocean[1])
+
+decorate('c("otter", "whale", "jellyfish")') %>% 
+  flair(ocean[2])
+
+decorate('c("otter", "whale", "jellyfish")
+                  #    1         2        3') %>% 
+  flair(ocean[3])
+```
+
+Two ways to work through lists
+```{r print example, echo=T}
+ocean <- c("otter", "whale", "jellyfish")
+
+for (animal in ocean) {
+  print(animal)
+}
+
+for (animal in 1:length(ocean)) {
+  print(animal)
+}
+```
+
+```{r}
+for (animal in ocean) {
+  print(paste(animal, "in the ocean"))
+}
+
+for (i in 1:length(ocean)) {
+  print(paste(ocean[i], "in the ocean"))
+}
+```
+
+
+### Exercise 
+
+*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+
+Write the R code required to add two plus two:
+
+```{r two-plus-two, exercise=TRUE}
+
+```
+
+### Exercise with Code
+
+*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+
+Now write a function that adds any two numbers and then call it:
+
+```{r add-function, exercise=TRUE, exercise.lines = 5}
+add <- function() {
+  
+}
+```
+
+## `apply and map`
+
+## `if else`
